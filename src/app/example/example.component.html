@@ -1,0 +1,81 @@
+<!-- <div class="row">
+  <div class="column left">
+    <div
+      id="div1"
+      cdkDrag
+      cdkDropList
+      cdkDropListConnectedTo="drop-list"
+      *ngFor="let type of types"
+      [cdkDragData]="type"
+      (cdkDragMoved)="moved($event)"
+    >
+    <div *ngIf="type && !type.vv;else other_content">
+      <input type="{{ type.text }}" />
+  </div>
+  
+  <ng-template #other_content><div [innerHTML]="type.text"></div></ng-template>
+      <div *cdkDragPlaceholder class="field-placeholder"></div>
+    </div>
+  </div>
+  <div class="column right">
+    <div
+    #dropZone
+      class="dropZone"
+      cdkDropList
+      [cdkDropListData]="fields"
+      id="drop-list"
+      cdkDropListSortingDisabled="true"
+      (cdkDropListDropped)="drop($event)"
+    >
+      <div
+        *ngFor="let field of fields; let i = index"
+        cdkDrag
+        (cdkDragDropped)="changePosition($event, field)"
+        style="position:absolute;z-index:i"
+        [style.top]="field.top"
+        [style.left]="field.left"
+      >
+      <input type="{{ field.text }}" />---
+      </div>
+    </div>
+  </div>
+</div> -->
+<div class="example-container">
+  <h2>To do</h2>
+
+  <div
+    cdkDropList
+    #todoList="cdkDropList"
+    [cdkDropListData]="todo"
+    [cdkDropListConnectedTo]="[doneList]"
+    class="example-list"
+    (cdkDropListDropped)="drop($event)">
+    <div class="example-box" *ngFor="let type of todo" cdkDrag [cdkDragData]="type"
+    (cdkDragMoved)="moved($event)">
+      <div *ngIf="type && !type.vv;else other_content">
+        <input type="{{ type.text }}" />
+    </div>
+    
+    <ng-template #other_content><div [innerHTML]="type.text"></div></ng-template>
+    </div>
+  </div>
+</div>
+
+<div class="example-container">
+  <h2>Done</h2>
+
+  <div
+    cdkDropList
+    #doneList="cdkDropList"
+    [cdkDropListData]="done"
+    [cdkDropListConnectedTo]="[todoList]"
+    class="example-list"
+    (cdkDropListDropped)="drop($event)">
+    <div class="example-box" *ngFor="let type of done" cdkDrag><div *ngIf="type && !type.vv;else other_content1">
+      <input type="{{ type.text }}" />
+  </div>
+  
+  <ng-template #other_content1><div [innerHTML]="type.text"></div></ng-template></div>
+  </div>
+</div>
+
